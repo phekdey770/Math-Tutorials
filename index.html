@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Tutorials | មេរៀនគណិតវិទ្យា</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Moul&family=Moulpali&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2933/2933245.png">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4ad66d;
+            --warning-color: #f8961e;
+            --danger-color: #ef233c;
+            --font-normal: 'Kantumruy Pro', sans-serif;
+            --font-header: 'Moul', serif;
+            --font-model: 'Moulpali', serif;
+            --transition: all 0.3s ease;
+            --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-normal);
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 5px;
+            border-radius: 50px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .language-toggle span {
+            padding: 0 10px;
+            font-weight: 600;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--secondary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: var(--font-header);
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-family: var(--font-header);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-header);
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-model);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 5rem 0;
+            background-color: #f5f7fa;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .course-card:hover .course-img img {
+            transform: scale(1.1);
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-content h3 {
+            font-family: var(--font-model);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .course-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .course-rating {
+            color: var(--warning-color);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background-color: #f5f7fa;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            margin: 0 1rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            position: absolute;
+            width: 100%;
+        }
+
+        .testimonial-card.active {
+            opacity: 1;
+        }
+
+        .testimonial-card .quote {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-family: var(--font-model);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-style: normal;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 10px;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .testimonial-dot.active {
+            background-color: var(--primary-color);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-family: var(--font-header);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .cta .btn {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .cta .btn:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-family: var(--font-model);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-column p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: var(--transition);
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+
+            .language-toggle {
+                bottom: 70px;
+                right: 10px;
+            }
+        }
+
+        /* Khmer Language Styles */
+        body.khmer {
+            font-family: var(--font-normal);
+        }
+
+        body.khmer .section-title h2,
+        body.khmer .feature-card h3,
+        body.khmer .course-content h3,
+        body.khmer .author-info h4,
+        body.khmer .footer-column h3 {
+            font-family: var(--font-header);
+        }
+
+        body.khmer .hero h1,
+        body.khmer .cta h2 {
+            font-family: var(--font-model);
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <span class="en">EN</span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="language-toggle">
+            <span class="slider"></span>
+        </label>
+        <span class="kh">KH</span>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2933/2933245.png" alt="Math Tutorials Logo">
+                    <div class="logo-text">Math Tutorials</div>
+                </div>
+                <nav>
+                    <ul id="nav-menu">
+                        <li><a href="#home" class="nav-link" data-en="Home" data-kh="ទំព័រដើម">Home</a></li>
+                        <li><a href="#features" class="nav-link" data-en="Features" data-kh="លក្ខណៈពិសេស">Features</a></li>
+                        <li><a href="#courses" class="nav-link" data-en="Courses" data-kh="មេរៀន">Courses</a></li>
+                        <li><a href="#testimonials" class="nav-link" data-en="Testimonials" data-kh="មតិអ្នកប្រើ">Testimonials</a></li>
+                        <li><a href="#contact" class="nav-link" data-en="Contact" data-kh="ទំនាក់ទំនង">Contact</a></li>
+                    </ul>
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-en="Master Math with Ease" data-kh="រៀនគណិតវិទ្យាដោយងាយស្រួល">Master Math with Ease</h1>
+                <p data-en="Unlock your potential with our comprehensive math tutorials designed for all levels." data-kh="បើកទ្វារសម្រាប់សក្តានុពលរបស់អ្នកជាមួយមេរៀនគណិតវិទ្យាពេញលេញសម្រាប់គ្រប់កម្រិត។">Unlock your potential with our comprehensive math tutorials designed for all levels.</p>
+                <a href="#courses" class="btn btn-primary" data-en="Explore Courses" data-kh="ស្វែងរកមេរៀន">Explore Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="Why Choose Us" data-kh="ហេតុអ្វីគួរជ្រើសរើសយើង">Why Choose Us</h2>
+                <p data-en="Our innovative approach makes learning math enjoyable and effective." data-kh="វិធីសាកសួរដ៏ប្រសើររបស់យើងធ្វើឱ្យការរៀនគណិតវិទ្យាកាន់តែរីករាយ និងមានប្រសិទ្ធភាព។">Our innovative approach makes learning math enjoyable and effective.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 data-en="Expert Instructors" data-kh="គ្រូបង្រៀនជំនាញ">Expert Instructors</h3>
+                    <p data-en="Learn from experienced math educators with proven track records." data-kh="រៀនពីគ្រូបង្រៀនគណិតវិទ្យាដែលមានបទពិសោធន៍។">Learn from experienced math educators with proven track records.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 data-en="Interactive Lessons" data-kh="មេរៀនអន្តរកម្ម">Interactive Lessons</h3>
+                    <p data-en="Engaging video tutorials with interactive exercises and quizzes." data-kh="មេរៀនវីដេអូដ៏គួរឱ្យចាប់អារម្មណ៍ជាមួយលំហាត់ និងសំណួរអន្តរកម្ម។">Engaging video tutorials with interactive exercises and quizzes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-en="Progress Tracking" data-kh="ការតាមដានការរីកចម្រើន">Progress Tracking</h3>
+                    <p data-en="Monitor your improvement with detailed analytics and reports." data-kh="តាមដានការរីកចម្រើនរបស់អ្នកជាមួយនឹងការវិភាគ និងរបាយការណ៍លម្អិត។">Monitor your improvement with detailed analytics and reports.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="Popular Courses" data-kh="មេរៀនពេញនិយម">Popular Courses</h2>
+                <p data-en="Browse our selection of comprehensive math courses for all levels." data-kh="ស្វែងរកមេរៀនគណិតវិទ្យាពេញលេញសម្រាប់គ្រប់កម្រិត។">Browse our selection of comprehensive math courses for all levels.</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Algebra Course">
+                    </div>
+                    <div class="course-content">
+                        <h3 data-en="Algebra Fundamentals" data-kh="គ្រឹះពិជគណិត">Algebra Fundamentals</h3>
+                        <p data-en="Master the building blocks of algebra with our comprehensive course." data-kh="ស្ទាត់ជំនាញគ្រឹះពិជគណិតជាមួយមេរៀនពេញលេញរបស់យើង។">Master the building blocks of algebra with our comprehensive course.</p>
+                        <div class="course-meta">
+                            <div class="course-price" data-en="$49.99" data-kh="៤៩.៩៩$">$49.99</div>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Geometry Course">
+                    </div>
+                    <div class="course-content">
+                        <h3 data-en="Geometry Mastery" data-kh="ជំនាញធរណីមាត្រ">Geometry Mastery</h3>
+                        <p data-en="Explore shapes, angles, and proofs in this comprehensive geometry course." data-kh="ស្វែងយល់ពីរាង មុំ និងភស្តុតាងនៅក្នុងមេរៀនធរណីមាត្រពេញលេញនេះ។">Explore shapes, angles, and proofs in this comprehensive geometry course.</p>
+                        <div class="course-meta">
+                            <div class="course-price" data-en="$59.99" data-kh="៥៩.៩៩$">$59.99</div>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Calculus Course">
+                    </div>
+                    <div class="course-content">
+                        <h3 data-en="Calculus Simplified" data-kh="ការគណនាដោយសាមញ្ញ">Calculus Simplified</h3>
+                        <p data-en="Demystify calculus with our step-by-step approach to derivatives and integrals." data-kh="ធ្វើឱ្យការគណនាងាយស្រួលជាមួយវិធីសាកសួរជំហានៗរបស់យើង។">Demystify calculus with our step-by-step approach to derivatives and integrals.</p>
+                        <div class="course-meta">
+                            <div class="course-price" data-en="$69.99" data-kh="៦៩.៩៩$">$69.99</div>
+                            <div class="course-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="What Students Say" data-kh="មតិសិស្ស">What Students Say</h2>
+                <p data-en="Hear from our students about their learning experience." data-kh="ស្តាប់ពីសិស្សានុសិស្សរបស់យើងអំពីបទពិសោធន៍រៀនសូត្រ។">Hear from our students about their learning experience.</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card active">
+                    <div class="quote">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p data-en="These math tutorials completely changed my perspective on mathematics. The explanations are clear and the exercises are challenging but achievable." data-kh="មេរៀនគណិតវិទ្យាទាំងនេះបានផ្លាស់ប្តូរទស្សនៈរបស់ខ្ញុំអំពីគណិតវិទ្យាទាំងស្រុង។ ការពន្យល់គឺច្បាស់លាស់ ហើយលំហាត់គឺអាចធ្វើបាន។">These math tutorials completely changed my perspective on mathematics. The explanations are clear and the exercises are challenging but achievable.</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sophia Chen">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sophia Chen</h4>
+                            <p data-en="High School Student" data-kh="សិស្សវិទ្យាល័យ">High School Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p data-en="I was struggling with calculus until I found this platform. The way concepts are broken down makes everything so much easier to understand." data-kh="ខ្ញុំមានបញ្ហាជាមួយការគណនារហូតដល់ខ្ញុំបានរកឃើញវេទិកានេះ។ វិធីដែលគំនិតត្រូវបានបំបែកធ្វើឱ្យអ្វីៗងាយស្រួលក្នុងការយល់។">I was struggling with calculus until I found this platform. The way concepts are broken down makes everything so much easier to understand.</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="David Kim">
+                        </div>
+                        <div class="author-info">
+                            <h4>David Kim</h4>
+                            <p data-en="College Freshman" data-kh="និស្សិតឆ្នាំទី១">College Freshman</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p data-en="As a parent, I appreciate how these tutorials make math accessible and fun for my children. Their grades have improved significantly." data-kh="ជាឪពុកម្តាយ ខ្ញុំពេញចិត្តពីរបៀបដែលមេរៀនទាំងនេះធ្វើឱ្យគណិតវិទ្យាអាចចូលដំណើរការ និងសប្បាយរីករាយសម្រាប់កូនៗរបស់ខ្ញុំ។ ពិន្ទុរបស់ពួកគេបានកែលម្អយ៉ាងខ្លាំង។">As a parent, I appreciate how these tutorials make math accessible and fun for my children. Their grades have improved significantly.</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Maria Gonzalez">
+                        </div>
+                        <div class="author-info">
+                            <h4>Maria Gonzalez</h4>
+                            <p data-en="Parent" data-kh="ឪពុកម្តាយ">Parent</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-nav">
+                <div class="testimonial-dot active" data-index="0"></div>
+                <div class="testimonial-dot" data-index="1"></div>
+                <div class="testimonial-dot" data-index="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2 data-en="Ready to Transform Your Math Skills?" data-kh="ត្រៀមខ្លួនដើម្បីផ្លាស់ប្តូរជំនាញគណិតវិទ្យារបស់អ្នកហើយឬនៅ?">Ready to Transform Your Math Skills?</h2>
+            <p data-en="Join thousands of students who have already improved their math abilities with our tutorials." data-kh="ចូលរួមជាមួយសិស្សានុសិស្សរាប់ពាន់នាក់ដែលបានកែលម្អជំនាញគណិតវិទ្យារបស់ពួកគេជាមួយមេរៀនរបស់យើង។">Join thousands of students who have already improved their math abilities with our tutorials.</p>
+            <a href="#" class="btn" data-en="Get Started Now" data-kh="ចាប់ផ្តើមឥឡូវនេះ">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 data-en="Math Tutorials" data-kh="មេរៀនគណិតវិទ្យា">Math Tutorials</h3>
+                    <p data-en="Making math accessible and enjoyable for learners of all ages and levels." data-kh="ធ្វើឱ្យគណិតវិទ្យាអាចចូលដំណើរការ និងរីករាយសម្រាប់អ្នករៀនគ្រប់វ័យ និងគ្រប់កម្រិត។">Making math accessible and enjoyable for learners of all ages and levels.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 data-en="Quick Links" data-kh="តំណភ្ជាប់រហ័ស">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-en="Home" data-kh="ទំព័រដើម">Home</a></li>
+                        <li><a href="#features" data-en="Features" data-kh="លក្ខណៈពិសេស">Features</a></li>
+                        <li><a href="#courses" data-en="Courses" data-kh="មេរៀន">Courses</a></li>
+                        <li><a href="#testimonials" data-en="Testimonials" data-kh="មតិអ្នកប្រើ">Testimonials</a></li>
+                        <li><a href="#contact" data-en="Contact" data-kh="ទំនាក់ទំនង">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-en="Contact Us" data-kh="ទាក់ទងពួកយើង">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span data-en="Phnom Penh, Cambodia" data-kh="ភ្នំពេញ កម្ពុជា">Phnom Penh, Cambodia</span></p>
+                    <p><i class="fas fa-phone"></i> <span>+855 12 345 678</span></p>
+                    <p><i class="fas fa-envelope"></i> info@mathtutorials.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="en">2025 - All rights reserved. Provide by Mr. Phekdey PHORN</p>
+                <p class="kh">2025 - រក្សារ​សិទ្ធិ​គ្រប់​យ៉ាង ដោយលោក ផន ភក្ដី។</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Testimonial Slider
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            testimonialCards.forEach(card => card.classList.remove('active'));
+            testimonialDots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonialCards[index].classList.add('active');
+            testimonialDots[index].classList.add('active');
+            currentTestimonial = index;
+        }
+
+        testimonialDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showTestimonial(parseInt(dot.getAttribute('data-index')));
+            });
+        });
+
+        // Auto slide testimonials
+        setInterval(() => {
+            let nextTestimonial = (currentTestimonial + 1) % testimonialCards.length;
+            showTestimonial(nextTestimonial);
+        }, 5000);
+
+        // Language Toggle
+        const languageToggle = document.getElementById('language-toggle');
+        const khmerElements = document.querySelectorAll('[data-kh]');
+        const englishElements = document.querySelectorAll('[data-en]');
+        const khCredits = document.querySelector('.footer-bottom .kh');
+        const enCredits = document.querySelector('.footer-bottom .en');
+
+        // Set initial language
+        document.body.classList.add('english');
+        khCredits.style.display = 'none';
+        enCredits.style.display = 'block';
+
+        languageToggle.addEventListener('change', function() {
+            if (this.checked) {
+                // Switch to Khmer
+                document.body.classList.remove('english');
+                document.body.classList.add('khmer');
+                
+                khmerElements.forEach(element => {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = element.getAttribute('data-kh');
+                    } else {
+                        element.textContent = element.getAttribute('data-kh');
+                    }
+                });
+                
+                khCredits.style.display = 'block';
+                enCredits.style.display = 'none';
+            } else {
+                // Switch to English
+                document.body.classList.remove('khmer');
+                document.body.classList.add('english');
+                
+                englishElements.forEach(element => {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = element.getAttribute('data-en');
+                    } else {
+                        element.textContent = element.getAttribute('data-en');
+                    }
+                });
+                
+                khCredits.style.display = 'none';
+                enCredits.style.display = 'block';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .course-card, .section-title');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.feature-card, .course-card, .section-title').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
+
